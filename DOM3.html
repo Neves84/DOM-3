@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Calculadora RGB</title>
+
+	<style>
+        .controls{
+            width: 960px;
+            height: 600px;
+            background-color: #80a8a8;
+            margin: 0 auto 0 auto;
+        }
+		
+    </style>
+
+</head>
+<body>
+	<h1 align="center"><font color="#80a8a8">Calculadora de Cores</font></h1>	
+	<div class="controls">
+		<div>
+			<input type="range" min="0" max="255" value="0" onchange="document.getElementById('redValEl').value = this.value;convert();">
+			Red: <input id="redValEl" type="text" value="0" style="width: 30px;"><br><br>
+			<input type="range" min="0" max="255" value="0" onchange="document.getElementById('greenValEl').value = this.value;convert();">
+			Green: <input id="greenValEl" type="text" value="0" style="width: 30px;"><br><br>
+			<input type="range" min="0" max="255" value="0" onchange="document.getElementById('blueValEl').value = this.value;convert();">
+			Blue: <input id="blueValEl" type="text" value="0" style="width: 30px;"><br><br>
+
+			<input id="hexaValue" type="text" value="#000000">
+		</div>
+	
+		<div id="rgb" style="width: 100px; height: 100px;"></div>
+		<div id="hex" style="width: 100px; height: 100px;"></div>
+	</div>
+
+	<script type="text/javascript">
+		
+		var redValEl = document.getElementById('redValEl');
+		var greenValEl = document.getElementById('greenValEl');
+		var blueValEl = document.getElementById('blueValEl');
+		var hexaValue = document.getElementById('hexaValue');
+
+		var rgb = document.getElementById('rgb');
+		var hex = document.getElementById('hex');
+
+		function convert() {
+			var red = redValEl.value;
+			var green = greenValEl.value;
+			var blue = blueValEl.value;
+
+			var hexaColorCode = "#" + getHexa(red) + getHexa(green) + getHexa(blue);
+			hexaValue.value = hexaColorCode;
+
+			rgb.style.background = `rgb(${red}, ${green}, ${blue})`;
+			hex.style.background = hexaColorCode;
+		};
+
+		function getHexa(value) {
+			var hexa = parseInt(value).toString(16);
+			return hexa.length == 1 ? "0" + hexa : hexa;
+		}
+
+
+	</script>
+</body>
+</html>
